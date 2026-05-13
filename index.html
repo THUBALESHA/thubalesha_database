@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANNINI Fragrance | Royal Collection</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0b0b0b;color:#fff;font-family:'Poppins',sans-serif;overflow-x:hidden;}
+h1,h2,h3{font-family:'Playfair Display',serif;letter-spacing:1px;}
+
+/* HEADER */
+header{position:fixed;width:100%;top:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(15px);padding:20px;text-align:center;z-index:1000;border-bottom:1px solid rgba(212,175,55,0.4);}
+header h1{color:#d4af37;font-size:20px;}
+nav{margin-top:8px;}
+nav a{color:#fff;margin:0 12px;text-decoration:none;font-size:13px;transition:0.3s;}
+nav a:hover{color:#d4af37;}
+
+/* HERO VIDEO */
+.hero{height:100vh;position:relative;display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;}
+.hero video{position:absolute;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(40%);}
+.hero-content h2{font-size:3.8rem;color:#d4af37;animation:fadeIn 2s ease;}
+.hero-content p{margin-top:20px;font-size:1.2rem;color:#ddd;}
+.gold-btn{margin-top:30px;padding:14px 35px;border-radius:50px;border:none;background:#d4af37;color:#000;font-weight:600;cursor:pointer;transition:0.3s;}
+.gold-btn:hover{background:#fff;transform:scale(1.05);}
+
+/* SECTIONS */
+.section{padding:120px 20px;text-align:center;opacity:0;transform:translateY(40px);transition:1s;}
+.section.show{opacity:1;transform:translateY(0);}
+.section h2{color:#d4af37;margin-bottom:60px;font-size:2.2rem;}
+
+/* PRODUCTS GRID */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;max-width:1200px;margin:auto;}
+.card{background:linear-gradient(145deg,#111,#1b1b1b);padding:20px;border-radius:25px;transition:0.4s;border:1px solid rgba(255,255,255,0.05);text-align:center;cursor:pointer;}
+.card:hover{transform:translateY(-12px);border:1px solid #d4af37;box-shadow:0 0 25px rgba(212,175,55,0.3);}
+.card img{width:100%;border-radius:20px;margin-bottom:15px;}
+.card h3{color:#d4af37;margin:15px 0;}
+.price{margin:10px 0 20px;font-weight:600;}
+
+/* SLIDING BAR CAROUSEL */
+.carousel-container{
+  margin-top:40px;
+  max-width: 100%;
+  overflow: hidden;
+  border-top:1px solid rgba(212,175,55,0.3);
+  border-bottom:1px solid rgba(212,175,55,0.3);
+  position: relative;
+  padding: 10px 0;
+}
+.carousel-track{
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+.carousel-item{
+  flex: 0 0 auto;
+  background: #111;
+  padding: 10px;
+  border-radius: 15px;
+  color: #d4af37;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.carousel-item img{width:50px;height:50px;border-radius:10px;}
+.carousel-item:hover{color: #fff;}
+.carousel-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(212,175,55,0.8);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+}
+.carousel-btn.left{left:10px;}
+.carousel-btn.right{right:10px;}
+
+/* TESTIMONIAL */
+.testimonial{max-width:800px;margin:auto;font-style:italic;color:#ccc;}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;}
+.stat{font-size:2rem;color:#d4af37;}
+
+/* MODAL */
+.popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:2000;}
+.popup-content{background:#111;padding:40px;width:95%;max-width:500px;border-radius:25px;border:1px solid #d4af37;}
+.popup-content input,
+.popup-content select,
+.popup-content textarea{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:none;}
+.total-box{background:#000;padding:12px;border-radius:10px;color:#d4af37;font-weight:600;margin-bottom:15px;text-align:center;}
+.whatsapp-btn{background:#25D366;padding:14px;width:100%;border:none;border-radius:8px;color:white;font-weight:600;cursor:pointer;}
+.eft-box{background:#000;padding:20px;margin-top:20px;border-radius:15px;border:1px solid #d4af37;font-size:14px;color:#ddd;}
+.close-btn{margin-top:15px;background:#d4af37;border:none;padding:10px;width:100%;border-radius:8px;cursor:pointer;}
+
+/* FOOTER */
+footer{background:#000;padding:60px 20px;text-align:center;border-top:1px solid rgba(212,175,55,0.3);color:#888;}
+.float-btn{position:fixed;bottom:25px;right:25px;background:#25D366;padding:18px;border-radius:50%;text-decoration:none;font-size:22px;color:#fff;box-shadow:0 0 20px rgba(0,0,0,0.6);}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>MANNINI FRAGRANCE</h1>
+<nav>
+<a href="#home">Home</a>
+<a href="#collection">Collection</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<video autoplay muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-perfume-bottle-1607/1080p.mp4" type="video/mp4">
+</video>
+<div class="hero-content">
+<h2>Experience Royal Elegance</h2>
+<p>Signature 50ml Collection – R230</p>
+<button class="gold-btn" onclick="openForm()">Shop Now</button>
+</div>
+</section>
+
+<section class="section" id="collection">
+<h2>Royal Collection</h2>
+
+<div class="products">
+<!-- Example product cards -->
+<div class="card" onclick="openForm('Dior Poison')">
+<img src="11.png" alt="Dior Poison">
+<h3>Dior Poison</h3>
+<p class="price">R230</p>
+<button class="gold-btn" onclick="openForm('Dior Poison')">Order</button>
+</div>
+<div class="card" onclick="openForm('Tom Ford Oud Wood')">
+<img src="10.png" alt="Tom Ford Oud Wood">
+<h3>Tom Ford Oud Wood</h3>
+<p class="price">R230</p>
+<button class="gold-btn" onclick="openForm('Tom Ford Oud Wood')">Order</button>
+</div>
+<div class="card" onclick="openForm('Black Opium')">
+<img src="1.png" alt="Black Opium">
+<h3>Black Opium</h3>
+<p class="price">R230</p>
+<button class="gold-btn" onclick="openForm('Black Opium')">Order</button>
+</div>
+<div class="card" onclick="openForm('Creed Aventos')">
+<img src="2.png" alt="Creed Aventos">
+<h3>Creed Aventos</h3>
+<p class="price">R230</p>
+<button class="gold-btn" onclick="openForm('Creed Aventos')">Order</button>
+</div>
+</div>
+
+<!-- CAROUSEL -->
+<div class="carousel-container">
+<button class="carousel-btn left" onclick="slideCarousel(-1)">&#10094;</button>
+<div class="carousel-track" id="carouselTrack">
+
+<!-- 44 Products with placeholder images -->
+<script>
+const products=[
+"Dunhill Blue","Lacoste Blue","Dior Poison","Dolce & Gabbana Light Blue Woman","Avroy Shailn Chaletcoppelia","Chanel #5",
+"Black Axxe","D&G Light Blue","Belagari","Hordelsol","Coppelia","Lady Million","Tabasheer","Flor Del Sol",
+"Men D&G","Greed Aventos","Tza","OPRHE","SHERIFF","PAN","ANG","DHL","Lagoon Green","Aramis 900",
+"Elizabeth Arden Red Door","Paco Rabanne One Million","Paco Rabanne Lady Million","Paco Rabanne Invictus","Carolina Herrera Good Girl",
+"Lancôme La Vie Est Belle","Creed Aventos","Dolce & Gabbana Light Blue Men","Tom Ford Oud Wood","Dunhill Red",
+"Dunhill Black","Yves Saint Laurent Black Opium","Ted Lapidus Pour Homme","Estée Lauder Pleasures","Additional1","Additional2","Additional3","Additional4"
+];
+for(let p of products){
+  document.write(`<span class="carousel-item" onclick="openForm('${p}')"><img src="https://via.placeholder.com/50x50?text=Img" alt="${p}">${p}</span>`);
+}
+</script>
+
+</div>
+<button class="carousel-btn right" onclick="slideCarousel(1)">&#10095;</button>
+</div>
+
+<!-- Testimonials, Stats, Order Popup, Contact, Footer -->
+<section class="section" id="reviews">
+<h2>Client Testimonials</h2>
+<p class="testimonial">“Absolutely luxurious. The scent lasts all day and feels premium.”</p>
+</section>
+
+<section class="section">
+<h2>Our Prestige</h2>
+<div class="stats">
+<div class="stat">1000+ Clients</div>
+<div class="stat">50+ Scents</div>
+<div class="stat">5★ Quality</div>
+</div>
+</section>
+
+<div class="popup" id="orderForm">
+<div class="popup-content">
+<h3 style="color:#d4af37;margin-bottom:15px;">Luxury Order</h3>
+<input type="text" id="fragrance" placeholder="Fragrance" readonly>
+<input type="text" id="name" placeholder="Full Name">
+<input type="tel" id="phone" placeholder="Contact Number">
+<textarea id="address" placeholder="Delivery Address"></textarea>
+<select id="shipping" onchange="calculateTotal()">
+<option value="0">Select Shipping</option>
+<option value="60">Johannesburg – R60</option>
+<option value="100">Nationwide – R100</option>
+</select>
+<div class="total-box" id="total">Total: R230</div>
+<button class="whatsapp-btn" onclick="sendWhatsApp()">Send via WhatsApp</button>
+
+<div class="eft-box">
+<strong>EFT PAYMENT DETAILS</strong><br><br>
+Bank: YOUR BANK NAME<br>
+Account Name: MANNINI Fragrance<br>
+Account Number: 0000000000<br>
+Branch Code: 000000<br>
+Reference: Your Name<br><br>
+Send proof of payment via WhatsApp.
+</div>
+
+<button class="close-btn" onclick="closeForm()">Cancel</button>
+</div>
+</div>
+
+<section class="section" id="contact">
+<h2>Contact Concierge</h2>
+<p>WhatsApp: +27 82 372 8571</p>
+</section>
+
+<footer>
+© 2026 MANNINI Fragrance — Royal Standard.
+</footer>
+
+<a href="https://wa.me/27823728571" class="float-btn" target="_blank">💬</a>
+
+<script>
+// Scroll animation
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+const top=sec.getBoundingClientRect().top;
+if(top<window.innerHeight-100){sec.classList.add("show");}
+});
+});
+
+// Order popup
+function openForm(fragrance){
+document.getElementById("orderForm").style.display="flex";
+if(fragrance){document.getElementById("fragrance").value=fragrance;}
+}
+function closeForm(){document.getElementById("orderForm").style.display="none";}
+function calculateTotal(){
+let shipping=document.getElementById("shipping").value;
+let total=230+Number(shipping);
+document.getElementById("total").innerHTML="Total: R"+total;
+}
+function sendWhatsApp(){
+let fragrance=document.getElementById("fragrance").value;
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let address=document.getElementById("address").value;
+let shipping=document.getElementById("shipping").value;
+let total=230+Number(shipping);
+let message=`Royal Order%0AFragrance: ${fragrance}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0ATotal: R${total}`;
+window.open(`https://wa.me/27823728571?text=${message}`,'_blank');
+}
+
+// Carousel sliding
+let track=document.getElementById("carouselTrack");
+let scrollAmount=0;
+function slideCarousel(direction){
+let width=track.children[0].offsetWidth + 20; // item width + gap
+scrollAmount += width*direction;
+if(scrollAmount<0) scrollAmount=0;
+if(scrollAmount>track.scrollWidth - track.parentElement.offsetWidth) scrollAmount=track.scrollWidth - track.parentElement.offsetWidth;
+track.style.transform=`translateX(-${scrollAmount}px)`;
+}
+</script>
+
+</body>
+</html>
